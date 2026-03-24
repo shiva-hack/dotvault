@@ -55,7 +55,7 @@ export function Sidebar({ roots, projects, onRefresh, onLock }: SidebarProps) {
       {/* Logo */}
       <div className="p-4 border-b border-border flex items-center gap-2">
         <span className="text-lg">🔐</span>
-        <h1 className="font-semibold text-sm tracking-tight">DotEnv Vault</h1>
+        <h1 className="font-semibold text-sm tracking-tight">dotvault</h1>
       </div>
 
       {/* Navigation */}

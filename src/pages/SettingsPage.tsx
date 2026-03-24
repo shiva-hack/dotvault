@@ -177,7 +177,7 @@ export function SettingsPage({ onLock, roots, onRefresh }: SettingsPageProps) {
       <section className="bg-surface border border-border rounded-lg p-5">
         <h2 className="text-sm font-medium text-white mb-2">About</h2>
         <p className="text-xs text-muted">
-          DotEnv Vault v1.0.0 — One vault for every secret, across every project, every environment.
+          dotvault v1.0.0 — One vault for every secret, across every project, every environment.
         </p>
         <p className="text-xs text-muted mt-1">
           Built with Tauri 2 + React + Rust. Encryption: AES-256-GCM + Argon2id.

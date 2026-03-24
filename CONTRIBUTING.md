@@ -1,6 +1,6 @@
-# Contributing to DotEnv Vault
+# Contributing to dotvault
 
-Thanks for your interest in contributing! This document covers the development setup and guidelines for contributing to DotEnv Vault.
+Thanks for your interest in contributing! This document covers the development setup and guidelines for contributing to dotvault.
 
 ## Development Setup
 
@@ -18,8 +18,8 @@ Thanks for your interest in contributing! This document covers the development s
 
 ```bash
 # Fork and clone the repo
-git clone https://github.com/YOUR_USERNAME/dotenv-vault.git
-cd dotenv-vault
+git clone https://github.com/YOUR_USERNAME/dotvault.git
+cd dotvault
 
 # Install frontend dependencies
 npm install

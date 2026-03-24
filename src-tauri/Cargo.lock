@@ -760,7 +760,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "dotenv-vault"
+name = "dotvault"
 version = "1.0.0"
 dependencies = [
  "aes-gcm",

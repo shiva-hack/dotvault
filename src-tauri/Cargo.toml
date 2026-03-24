@@ -1,12 +1,12 @@
 [package]
-name = "dotenv-vault"
+name = "dotvault"
 version = "1.0.0"
 description = "One vault for every secret, across every project, every environment."
 authors = ["Shivam / Tagmark Studio"]
 edition = "2021"
 
 [lib]
-name = "dotenv_vault_lib"
+name = "dotvault_lib"
 crate-type = ["lib", "cdylib", "staticlib"]
 
 [build-dependencies]

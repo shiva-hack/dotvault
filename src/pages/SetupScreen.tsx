@@ -39,7 +39,7 @@ export function SetupScreen({ onSetup }: SetupScreenProps) {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">🔐</div>
-          <h1 className="text-2xl font-semibold text-white mb-2">DotEnv Vault</h1>
+          <h1 className="text-2xl font-semibold text-white mb-2">dotvault</h1>
           <p className="text-muted text-sm">
             One vault for every secret, across every project, every environment.
           </p>

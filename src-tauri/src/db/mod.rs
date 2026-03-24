@@ -98,7 +98,7 @@ impl Database {
 
     fn db_path() -> PathBuf {
         let mut path = dirs::data_dir().unwrap_or_else(|| PathBuf::from("."));
-        path.push("dotenv-vault");
+        path.push("dotvault");
         path.push("vault.db");
         path
     }

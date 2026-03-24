@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    dotenv_vault_lib::run()
+    dotvault_lib::run()
 }

@@ -104,7 +104,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
       <h2 className="text-lg font-medium text-white mb-2">No projects yet</h2>
       <p className="text-muted text-sm mb-6 max-w-md mx-auto">
         Add a root directory to start scanning for projects and their .env files.
-        DotEnv Vault will recursively discover all projects and their environment configurations.
+        dotvault will recursively discover all projects and their environment configurations.
       </p>
       <button
         onClick={onAdd}

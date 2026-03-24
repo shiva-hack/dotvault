@@ -1,8 +1,8 @@
-# DotEnv Vault
+# dotvault
 
 > One vault for every secret, across every project, every environment.
 
-DotEnv Vault is a lightweight desktop app that discovers, catalogs, compares, and encrypts every `.env` file across all your projects. Point it at your project directories and it recursively finds every environment file — grouped by project, parsed by environment tier, and encrypted at rest with a single master password.
+dotvault is a lightweight desktop app that discovers, catalogs, compares, and encrypts every `.env` file across all your projects. Point it at your project directories and it recursively finds every environment file — grouped by project, parsed by environment tier, and encrypted at rest with a single master password.
 
 Built with [Tauri 2](https://v2.tauri.app/), Rust, React, and TypeScript.
 
@@ -10,7 +10,7 @@ Built with [Tauri 2](https://v2.tauri.app/), Rust, React, and TypeScript.
 
 ## Features
 
-- **Multi-root scanning** — Register one or more root directories. DotEnv Vault recursively discovers all projects (Node.js, Rust, Python, Go, Ruby, PHP, .NET) and their `.env*` files.
+- **Multi-root scanning** — Register one or more root directories. dotvault recursively discovers all projects (Node.js, Rust, Python, Go, Ruby, PHP, .NET) and their `.env*` files.
 - **Dot-depth hierarchy** — Automatically parses `.env.development`, `.env.production.local`, etc. into a structured tree showing environment layering at a glance.
 - **Cross-environment comparison** — Matrix view showing which variables exist (or are missing) across environments. Color-coded: green = everywhere, yellow = partial, red = single environment only.
 - **Encryption at rest** — All secret values are encrypted with AES-256-GCM. The encryption key is derived from your master password via Argon2id. Variable *names* stay in plaintext for instant search.
@@ -43,8 +43,8 @@ Built with [Tauri 2](https://v2.tauri.app/), Rust, React, and TypeScript.
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/dotenv-vault.git
-cd dotenv-vault
+git clone https://github.com/your-username/dotvault.git
+cd dotvault
 
 # Install frontend dependencies
 npm install
@@ -64,7 +64,7 @@ The compiled app will be in `src-tauri/target/release/bundle/`.
 ## Usage
 
 1. **Create a master password** — On first launch, set a strong password. This encrypts all your secret values. It's never stored anywhere.
-2. **Add a root directory** — Click "Add Root" and pick a folder (e.g. `~/projects`). DotEnv Vault scans it recursively.
+2. **Add a root directory** — Click "Add Root" and pick a folder (e.g. `~/projects`). dotvault scans it recursively.
 3. **Browse your projects** — The sidebar shows every discovered project grouped by root. Click a project to see its environment files.
 4. **View variables** — Click any `.env` file to see its key-value pairs. Values are masked by default — click "Reveal" to decrypt.
 5. **Compare environments** — From a project detail page, click "Compare Environments" to see a matrix of which variables exist in which files.
@@ -73,7 +73,7 @@ The compiled app will be in `src-tauri/target/release/bundle/`.
 ## Project Structure
 
 ```
-dotenv-vault/
+dotvault/
 ├── src/                    # React frontend
 │   ├── components/         # Sidebar, Header, SearchPalette, TierBadge
 │   ├── pages/              # Setup, Unlock, Projects, ProjectDetail, EnvFile, Comparison, Settings

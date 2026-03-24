@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-DotEnv Vault is a **Tauri 2.x desktop app** that discovers, catalogs, compares, and encrypts `.env` files across all your projects. It scans root directories, finds projects, parses their env files, and stores everything in an encrypted local SQLite vault.
+dotvault is a **Tauri 2.x desktop app** that discovers, catalogs, compares, and encrypts `.env` files across all your projects. It scans root directories, finds projects, parses their env files, and stores everything in an encrypted local SQLite vault.
 
 ## Commands
 
