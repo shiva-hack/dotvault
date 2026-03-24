@@ -60,7 +60,10 @@ pub fn scan_root(
 ) -> Result<ScanResult, String> {
     let root = Path::new(root_path);
     if !root.exists() || !root.is_dir() {
-        return Err(format!("Root path does not exist or is not a directory: {}", root_path));
+        return Err(format!(
+            "Root path does not exist or is not a directory: {}",
+            root_path
+        ));
     }
 
     // Step 1: Discover projects
@@ -212,9 +215,7 @@ fn discover_projects(root: &Path) -> Vec<(PathBuf, String)> {
 
         if is_marker || is_dotnet {
             if let Some(parent) = entry.path().parent() {
-                projects
-                    .entry(parent.to_path_buf())
-                    .or_insert(filename);
+                projects.entry(parent.to_path_buf()).or_insert(filename);
             }
         }
     }
@@ -238,7 +239,10 @@ fn find_env_files(project_path: &Path) -> Vec<PathBuf> {
             let name = entry.file_name().to_string_lossy().to_string();
             if name.starts_with(".env") && entry.file_type().map(|t| t.is_file()).unwrap_or(false) {
                 // Skip .env.example files
-                if name.ends_with(".example") || name.ends_with(".sample") || name.ends_with(".template") {
+                if name.ends_with(".example")
+                    || name.ends_with(".sample")
+                    || name.ends_with(".template")
+                {
                     continue;
                 }
                 env_files.push(entry.path());

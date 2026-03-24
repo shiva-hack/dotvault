@@ -290,8 +290,10 @@ impl Database {
             "DELETE FROM env_vars WHERE file_id IN (SELECT id FROM env_files WHERE project_id = ?1)",
             params![project_id],
         )?;
-        self.conn
-            .execute("DELETE FROM env_files WHERE project_id = ?1", params![project_id])?;
+        self.conn.execute(
+            "DELETE FROM env_files WHERE project_id = ?1",
+            params![project_id],
+        )?;
         Ok(())
     }
 
@@ -380,10 +382,7 @@ impl Database {
         if let Some(pids) = project_ids {
             if !pids.is_empty() {
                 let placeholders: Vec<String> = pids.iter().map(|_| "?".to_string()).collect();
-                sql.push_str(&format!(
-                    " AND p.id IN ({})",
-                    placeholders.join(",")
-                ));
+                sql.push_str(&format!(" AND p.id IN ({})", placeholders.join(",")));
             }
         }
         if let Some(t) = tiers {
@@ -424,9 +423,9 @@ impl Database {
 
         for fid in file_ids {
             // Get file info
-            let mut stmt = self.conn.prepare(
-                "SELECT id, filename, tier FROM env_files WHERE id = ?1",
-            )?;
+            let mut stmt = self
+                .conn
+                .prepare("SELECT id, filename, tier FROM env_files WHERE id = ?1")?;
             let file = stmt.query_row(params![fid], |row| {
                 Ok(ComparisonFile {
                     file_id: row.get(0)?,
@@ -453,7 +452,8 @@ impl Database {
         let keys: Vec<ComparisonKey> = all_keys
             .into_iter()
             .map(|key| {
-                let presence: Vec<bool> = file_key_sets.iter().map(|ks| ks.contains(&key)).collect();
+                let presence: Vec<bool> =
+                    file_key_sets.iter().map(|ks| ks.contains(&key)).collect();
                 let count = presence.iter().filter(|&&p| p).count();
                 let status = if count == file_ids.len() {
                     "all".to_string()

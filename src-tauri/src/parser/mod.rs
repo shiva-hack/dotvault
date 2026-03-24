@@ -68,12 +68,7 @@ pub fn parse_env_contents(contents: &str) -> Vec<ParsedVar> {
             parse_single_quoted(raw_value)
         } else {
             // Unquoted: strip inline comments
-            raw_value
-                .split('#')
-                .next()
-                .unwrap_or("")
-                .trim()
-                .to_string()
+            raw_value.split('#').next().unwrap_or("").trim().to_string()
         };
 
         vars.push(ParsedVar {

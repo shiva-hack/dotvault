@@ -42,9 +42,9 @@ impl Encryptor {
             .hash_password(password.as_bytes(), &salt_str)
             .map_err(|e| CryptoError::KeyDerivationFailed(e.to_string()))?;
 
-        let hash_output = hash.hash.ok_or_else(|| {
-            CryptoError::KeyDerivationFailed("No hash output".to_string())
-        })?;
+        let hash_output = hash
+            .hash
+            .ok_or_else(|| CryptoError::KeyDerivationFailed("No hash output".to_string()))?;
 
         let bytes = hash_output.as_bytes();
         let mut key = [0u8; 32];
@@ -72,8 +72,8 @@ impl Encryptor {
 
     /// Verify a password against a stored hash
     pub fn verify_password(password: &str, hash: &str) -> Result<bool, CryptoError> {
-        let parsed_hash = PasswordHash::new(hash)
-            .map_err(|e| CryptoError::KeyDerivationFailed(e.to_string()))?;
+        let parsed_hash =
+            PasswordHash::new(hash).map_err(|e| CryptoError::KeyDerivationFailed(e.to_string()))?;
         Ok(Argon2::default()
             .verify_password(password.as_bytes(), &parsed_hash)
             .is_ok())
@@ -119,10 +119,7 @@ impl VaultState {
     }
 
     /// Set up a new vault with a master password
-    pub fn setup(
-        &mut self,
-        password: &str,
-    ) -> Result<(Vec<u8>, String), CryptoError> {
+    pub fn setup(&mut self, password: &str) -> Result<(Vec<u8>, String), CryptoError> {
         let salt = Encryptor::generate_salt();
         let key = Encryptor::derive_key(password, &salt)?;
         let password_hash = Encryptor::hash_password(password)?;

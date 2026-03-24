@@ -118,10 +118,7 @@ pub fn compare_envs(
 // ── Vault management ─────────────────────────────────────────────────
 
 #[tauri::command]
-pub fn setup_vault(
-    state: State<'_, AppState>,
-    master_pw: String,
-) -> Result<(), String> {
+pub fn setup_vault(state: State<'_, AppState>, master_pw: String) -> Result<(), String> {
     let mut vs = vault_state().lock();
     let (salt, password_hash) = vs.setup(&master_pw).map_err(|e| e.to_string())?;
 
@@ -137,10 +134,7 @@ pub fn setup_vault(
 }
 
 #[tauri::command]
-pub fn unlock_vault(
-    state: State<'_, AppState>,
-    master_pw: String,
-) -> Result<bool, String> {
+pub fn unlock_vault(state: State<'_, AppState>, master_pw: String) -> Result<bool, String> {
     let db = state.db.lock();
 
     let salt = db
@@ -216,10 +210,7 @@ pub fn change_password(
 }
 
 #[tauri::command]
-pub fn export_all(
-    state: State<'_, AppState>,
-    target_dir: String,
-) -> Result<u32, String> {
+pub fn export_all(state: State<'_, AppState>, target_dir: String) -> Result<u32, String> {
     let vs = vault_state().lock();
     let encryptor = vs.get_encryptor().ok_or("Vault is locked")?;
     let db = state.db.lock();
@@ -228,14 +219,10 @@ pub fn export_all(
     let mut exported = 0u32;
 
     for project in &projects {
-        let files = db
-            .get_env_files(&project.id)
-            .map_err(|e| e.to_string())?;
+        let files = db.get_env_files(&project.id).map_err(|e| e.to_string())?;
 
         for file in &files {
-            let vars = db
-                .get_env_variables(&file.id)
-                .map_err(|e| e.to_string())?;
+            let vars = db.get_env_variables(&file.id).map_err(|e| e.to_string())?;
 
             let mut content = String::new();
             for var in &vars {
@@ -253,8 +240,7 @@ pub fn export_all(
             let out_path = std::path::Path::new(&target_dir)
                 .join(&project.name)
                 .join(&file.filename);
-            std::fs::create_dir_all(out_path.parent().unwrap())
-                .map_err(|e| e.to_string())?;
+            std::fs::create_dir_all(out_path.parent().unwrap()).map_err(|e| e.to_string())?;
             std::fs::write(&out_path, &content).map_err(|e| e.to_string())?;
             exported += 1;
         }
@@ -287,10 +273,7 @@ pub fn search(
 // ── File watcher ─────────────────────────────────────────────────────
 
 #[tauri::command]
-pub fn start_watcher(
-    app: tauri::AppHandle,
-    state: State<'_, AppState>,
-) -> Result<(), String> {
+pub fn start_watcher(app: tauri::AppHandle, state: State<'_, AppState>) -> Result<(), String> {
     let db = state.db.lock();
     let roots = db.get_roots().map_err(|e| e.to_string())?;
     let root_paths: Vec<String> = roots.iter().map(|r| r.path.clone()).collect();
