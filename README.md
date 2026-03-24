@@ -115,4 +115,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Made by [Shivam / Tagmark Studio](https://tagmark.studio)
+Made by [Shivam / Tagmark Studio](https://tagmark.co)
